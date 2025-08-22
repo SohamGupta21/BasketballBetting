@@ -68,31 +68,31 @@ class Player():
         self.shooting_range = tendencies_array[2]
         self.passing_choice = tendencies_array[3]
 
-        self.complete_pass = self.skills['passing'] / float(100)
+        self.complete_pass = self.skills['passing'] / 100.0
         self.protect_drive = (0.60 * self.skills['dribbling'] + \
-                              0.40 * self.skills['speed']) / float(100)
+                              0.40 * self.skills['speed']) / 100.0
 
         self.steal_drive = (0.40 * self.defense['defense'] + \
                             0.30 * self.skills['speed'] + \
-                            0.30 * self.defense['stealing']) / float(100)
+                            0.30 * self.defense['stealing']) / 100.0
         self.steal_pass = (0.25 * self.defense['defense'] + \
                            0.35 * self.skills['speed'] + \
-                           0.40 * self.defense['stealing']) / float(100)
+                           0.40 * self.defense['stealing']) / 100.0
         self.block_chance = (0.80 * self.defense['blocking'] + \
-                           0.40 * self.defense['defense']) / float(750)
+                           0.40 * self.defense['defense']) / 750.0
 
 
     def print_player(self):
-        print self.name
-        print self.position_string
-        print self.shooting
-        print self.driving
-        print self.defense
-        print self.skills
-        print self.o_tendencies
-        print self.d_tendencies
-        print self.shooting_range
-        print self.passing_choice
+        print(self.name)
+        print(self.position_string)
+        print(self.shooting)
+        print(self.driving)
+        print(self.defense)
+        print(self.skills)
+        print(self.o_tendencies)
+        print(self.d_tendencies)
+        print(self.shooting_range)
+        print(self.passing_choice)
 
 def randomize_skills(floor=50, ceiling=100):
     shooting = {}
@@ -127,9 +127,9 @@ def randomize_tendencies(position):
         value = random.randint(20, 80)
         total += value
         shot_range.append(value)
-    shooting_range['close'] = 100*float(shot_range[0]) / total
-    shooting_range['mid'] = 100*float(shot_range[1]) / total
-    shooting_range['long'] = 100*float(shot_range[2]) / total
+    shooting_range['close'] = 100*shot_range[0] / total
+    shooting_range['mid'] = 100*shot_range[1] / total
+    shooting_range['long'] = 100*shot_range[2] / total
 
     total = 0
     passing_choice = []
@@ -142,6 +142,6 @@ def randomize_tendencies(position):
         passing_choice.append(value)
     for i in range(5):
         if i != position - 1:
-            passing_choice[i] = 100*float(passing_choice[i]) / total
+            passing_choice[i] = 100*passing_choice[i] / total
 
     return o_tendencies, d_tendencies, shooting_range, passing_choice

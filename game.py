@@ -18,60 +18,60 @@ def game(t1, t2, pbp=False):
 
     # Opening tip
     rand_jumpball = random()
-    if pbp: print 'FIRST QUARTER'
-    if pbp: print ''
+    if pbp: print('FIRST QUARTER')
+    if pbp: print('')
     # Reset all players energy to 100
     for p in (t1.players + t2.players):
         p.energy = 100
     if rand_jumpball < 0.5:
-        if pbp: print '%s won jump ball' % t1.name
+        if pbp: print('%s won jump ball' % t1.name)
         turn = 0
     else:
-        if pbp: print '%s won jump ball' % t2.name
+        if pbp: print('%s won jump ball' % t2.name)
         turn = 1
     q1 = quarter(t1, t2, turn, pbp=pbp)
 
     # Team who looses tip gets possesion to start 2nd and 3rd
     if turn == 0:
-        if pbp: print ''
-        if pbp: print 'SECOND QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('SECOND QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         q2 = quarter(t1, t2, 1, pbp=pbp)
-        if pbp: print ''
-        if pbp: print 'THIRD QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('THIRD QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         # Reset all players energy to 100
         for p in (t1.players + t2.players):
             p.energy = 100
         q3 = quarter(t1, t2, 1, pbp=pbp)
-        if pbp: print ''
-        if pbp: print 'FOURTH QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('FOURTH QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         q4 = quarter(t1, t2, 0, pbp=pbp)
     else:
-        if pbp: print ''
-        if pbp: print 'SECOND QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('SECOND QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         q2 = quarter(t1, t2, 0, pbp=pbp)
-        if pbp: print ''
-        if pbp: print 'THIRD QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('THIRD QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         q3 = quarter(t1, t2, 0, pbp=pbp)
-        if pbp: print ''
-        if pbp: print 'FOURTH QUARTER'
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('FOURTH QUARTER')
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         # All players gain 10 energy
         for p in (t1.players + t2.players):
             p.energy += 10
@@ -80,11 +80,11 @@ def game(t1, t2, pbp=False):
     quarters_played = 4
     # If score tied after 4 quarters, start each overtime with jump ball
     while t1.points == t2.points:
-        if pbp: print ''
-        if pbp: print 'OVERTIME %s' % (quarters_played - 3)
-        if pbp: print '%s: %s' % (t1.name, t1.points)
-        if pbp: print '%s: %s' % (t2.name, t2.points)
-        if pbp: print ''
+        if pbp: print('')
+        if pbp: print('OVERTIME %s' % (quarters_played - 3))
+        if pbp: print('%s: %s' % (t1.name, t1.points))
+        if pbp: print('%s: %s' % (t2.name, t2.points))
+        if pbp: print('')
         rand_jumpball = random()
         if rand_jumpball < 0.5:
             turn = 0
@@ -145,8 +145,8 @@ def quarter(t1, t2, turn, ot=False, pbp=False):
         else:
             turn += 1
 
-        if pbp: print '%s  -  %s-%s  -  %s' % (orig_game_clock, t1.points, \
-                                               t2.points, result)
+        if pbp: print('%s  -  %s-%s  -  %s' % (orig_game_clock, t1.points, \
+                                               t2.points, result))
 
 
 def possesion(team, deff_team, game_clock=timedelta(minutes = 12), pbp=False):
@@ -182,7 +182,7 @@ def possesion(team, deff_team, game_clock=timedelta(minutes = 12), pbp=False):
         try:
             current_player = off
             open_factor = (100 + current_player.skills['passing'] - 70) / \
-                           float(100)
+                           100.0
             open_factor = max(1, open_factor)
             next_player = team.on_floor[passed_to]
         except TypeError:
@@ -234,8 +234,8 @@ def play(off, deff, shot_clock=24, pbp=False, first=False, open_factor=1):
     if first:
         urgent = 1
     else:
-        urgent = 1 - (24 - shot_clock)/float(25)
-    if random_sp < ((off.o_tendencies['shoot_pass'] - 50)/float(300) + urgent) \
+        urgent = 1 - (24 - shot_clock)/25.0
+    if random_sp < ((off.o_tendencies['shoot_pass'] - 50)/300.0 + urgent) \
     and shot_clock > 5:
         passed_to, result = attempt_pass(off, deff)
         off.passes += 1
@@ -394,7 +394,7 @@ def attempt_pass(off, deff):
     # Give player defending the intended target a 5-25% chance of stealing the
     # pass, depending on attributes
     guarding_pass = deff.on_floor[pass_to ]
-    make_pass = 0.96 + (off.complete_pass - guarding_pass.steal_pass) / 50
+    make_pass = 0.96 + (off.complete_pass - guarding_pass.steal_pass) / 50.0
     if make_pass > 0.98:
         make_pass = 0.98
     elif make_pass < 0.94:
@@ -432,7 +432,7 @@ def update_fatigue(off, deff, time_used):
     # For players on the court decrease energy, resting players increase
     for team in [off, deff]:
         for p in team.on_floor:
-            tire_factor = (110 - p.skills['stamina']) / float(275)
+            tire_factor = (110 - p.skills['stamina']) / 275.0
             tire_factor = uniform(0.75*tire_factor, 1.25*tire_factor)
             p.energy = max(0, p.energy - time_used * tire_factor)
         for p in team.on_bench:
@@ -449,7 +449,7 @@ def sub_players(off, deff, pbp=False):
                         if b.position == p.position and b.energy > 95:
                             team.on_floor[slot] = b
                             team.on_bench[slot] = p
-                            if pbp: print '%s subbed out for %s' % (p.name, b.name)
+                            if pbp: print('%s subbed out for %s' % (p.name, b.name))
                             break
             else:
                 if p.energy < 55:
@@ -457,5 +457,5 @@ def sub_players(off, deff, pbp=False):
                         if b.position == p.position and b.energy > 95:
                             team.on_floor[slot] = b
                             team.on_bench[slot] = p
-                            if pbp: print '%s subbed out for %s' % (p.name, b.name)
+                            if pbp: print('%s subbed out for %s' % (p.name, b.name))
                             break
